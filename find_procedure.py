@@ -49,9 +49,6 @@ sql_list = []
 
 def get_sql_list():
     current_dir = get_current_dir()
-    # if (new_list):
-    #     sql_list = new_list
-    # else:
     file_list = os.listdir(current_dir)
     # sql_list = []
     for file in file_list:
@@ -61,10 +58,8 @@ def get_sql_list():
             continue
     return sql_list
 
-# input_string = 'INSERT'
 
 def get_new_list(in_string, s_list):
-    # sql_list = get_sql_list()
     new_sql_list = []
     for i, file in enumerate(s_list):
         with open(s_list[i], encoding='utf-8-sig') as file:
@@ -75,7 +70,6 @@ def get_new_list(in_string, s_list):
         new_sql_set = set(new_sql_list)
         new_sql_set = sorted(new_sql_set)
         sql_list = list(new_sql_set)
-    # get_new_list(in_string)
     return sql_list
 
 
@@ -87,6 +81,6 @@ if __name__ == '__main__':
         if input_string == "q":
             break
         else:
-            new_list = get_new_list(input_string, sql_list) #!!!
+            new_list = get_new_list(input_string, sql_list) 
         print(new_list)
         print("Колличество элементов:", len(new_list))
