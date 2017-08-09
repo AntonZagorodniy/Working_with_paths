@@ -45,42 +45,38 @@ def get_current_dir():
     os.chdir(current_dir)
     return current_dir
 
-sql_list = []
 
 def get_sql_list():
     current_dir = get_current_dir()
     file_list = os.listdir(current_dir)
-    # sql_list = []
+    sql_list = []
     for file in file_list:
-        if (file.find('sql') != -1):
+        # if (file.find('sql') != -1):
+        if file.endswith('.sql'):
             sql_list.append(file)
-        else:
-            continue
     return sql_list
 
 
 def get_new_list(in_string, s_list):
     new_sql_list = []
-    for i, file in enumerate(s_list):
-        with open(s_list[i], encoding='utf-8-sig') as file:
-            for l in file:
-                tempstr = l.strip()
-                if in_string in tempstr:
-                    new_sql_list.append(s_list[i])
-        new_sql_set = set(new_sql_list)
-        new_sql_set = sorted(new_sql_set)
-        sql_list = list(new_sql_set)
+    for file in s_list:                              #for i, file in enumerate(s_list):
+        with open(file, encoding='utf-8-sig') as f:  #with open(s_list[i], encoding='utf-8-sig') as file:
+            # for l in file:
+            #     tempstr = l.strip()
+            #     if in_string in tempstr:
+            if in_string in f.read():
+                new_sql_list.append(file)
+        sql_list = new_sql_list
     return sql_list
 
 
 if __name__ == '__main__':
-    get_sql_list()
+    sql_list = get_sql_list()
     while True:
-        # new_list1 = get_new_list(input_string)
         input_string = input("Введите нужную строку или q - для выхода):\n")
-        if input_string == "q":
-            break
+        if input_string != "q":
+            new_list = get_new_list(input_string, sql_list)
         else:
-            new_list = get_new_list(input_string, sql_list) 
+            break
         print(new_list)
-        print("Колличество элементов:", len(new_list))
+        print("Количество элементов:", len(new_list))
