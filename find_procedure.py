@@ -62,7 +62,6 @@ def get_new_list(in_string, s_list):
     new_sql_list = []
     for file in s_list:                              #for i, file in enumerate(s_list):
         file = os.path.join(current_dir, file)
-        print(file)
         with open(file, encoding='utf-8-sig') as f:  #with open(s_list[i], encoding='utf-8-sig') as file:
             # for l in file:
             #     tempstr = l.strip()
