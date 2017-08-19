@@ -42,7 +42,7 @@ def get_current_dir():
     migrations = 'Migrations'
     current_dir = os.path.dirname(os.path.abspath(__file__))
     current_dir = os.path.join(current_dir, migrations)
-    os.chdir(current_dir)
+    # os.chdir(current_dir)
     return current_dir
 
 
@@ -58,8 +58,11 @@ def get_sql_list():
 
 
 def get_new_list(in_string, s_list):
+    current_dir = get_current_dir()
     new_sql_list = []
     for file in s_list:                              #for i, file in enumerate(s_list):
+        file = os.path.join(current_dir, file)
+        print(file)
         with open(file, encoding='utf-8-sig') as f:  #with open(s_list[i], encoding='utf-8-sig') as file:
             # for l in file:
             #     tempstr = l.strip()
