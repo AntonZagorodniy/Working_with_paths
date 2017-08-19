@@ -73,10 +73,9 @@ def get_new_list(in_string, s_list):
 if __name__ == '__main__':
     sql_list = get_sql_list()
     while True:
-        input_string = input("Введите нужную строку или q - для выхода):\n")
-        if input_string != "q":
-            new_list = get_new_list(input_string, sql_list)
-        else:
+        input_string = input("Введите нужную строку или q - для выхода\n")
+        new_list = get_new_list(input_string, sql_list)
+        if input_string == "q":
             break
         print(new_list)
         print("Количество элементов:", len(new_list))
